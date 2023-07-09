@@ -38,8 +38,8 @@ function startTimer() {
   const timerId = setInterval(() => {
     ms = selectedDate - new Date();
     if (ms >= 0) {
-      convertMs(ms);
-      addLeadingZero(date);
+      const date = convertMs(ms);
+      const result = addLeadingZero(date);
       deysEl.textContent = result.days;
       hoursEl.textContent = result.hours;
       minutesEl.textContent = result.minutes;
@@ -65,14 +65,16 @@ function convertMs(ms) {
   const minutes = Math.floor(((ms % day) % hour) / minute);
   // Remaining seconds
   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
-
-  return (date = { days, hours, minutes, seconds });
+  const date = { days, hours, minutes, seconds };
+  return date;
 }
-
+// console.log(convertMs(46544564));
+// console.log(date);
 function addLeadingZero(date) {
   const days = date.days.toString().padStart(2, '0');
   const hours = date.hours.toString().padStart(2, '0');
   const minutes = date.minutes.toString().padStart(2, '0');
   const seconds = date.seconds.toString().padStart(2, '0');
-  return (result = { days, hours, minutes, seconds });
+  const result = { days, hours, minutes, seconds };
+  return result;
 }
