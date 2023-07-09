@@ -56,7 +56,6 @@ function convertMs(ms) {
   const minute = second * 60;
   const hour = minute * 60;
   const day = hour * 24;
-
   // Remaining days
   const days = Math.floor(ms / day);
   // Remaining hours
@@ -65,16 +64,13 @@ function convertMs(ms) {
   const minutes = Math.floor(((ms % day) % hour) / minute);
   // Remaining seconds
   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
-  const date = { days, hours, minutes, seconds };
-  return date;
+  return { days, hours, minutes, seconds };
 }
-// console.log(convertMs(46544564));
-// console.log(date);
+
 function addLeadingZero(date) {
   const days = date.days.toString().padStart(2, '0');
   const hours = date.hours.toString().padStart(2, '0');
   const minutes = date.minutes.toString().padStart(2, '0');
   const seconds = date.seconds.toString().padStart(2, '0');
-  const result = { days, hours, minutes, seconds };
-  return result;
+  return { days, hours, minutes, seconds };
 }
