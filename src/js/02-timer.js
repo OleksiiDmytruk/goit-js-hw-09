@@ -39,7 +39,7 @@ function startTimer() {
     ms = selectedDate - new Date();
     if (ms >= 0) {
       convertMs(ms);
-      addLeadingZero(convertMs);
+      addLeadingZero(date);
       deysEl.textContent = result.days;
       hoursEl.textContent = result.hours;
       minutesEl.textContent = result.minutes;
@@ -69,7 +69,7 @@ function convertMs(ms) {
   return (date = { days, hours, minutes, seconds });
 }
 
-function addLeadingZero(convertMs) {
+function addLeadingZero(date) {
   const days = date.days.toString().padStart(2, '0');
   const hours = date.hours.toString().padStart(2, '0');
   const minutes = date.minutes.toString().padStart(2, '0');
