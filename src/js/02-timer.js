@@ -71,9 +71,10 @@ function getTimer(result) {
   secondsEl.textContent = result.seconds;
 }
 function addLeadingZero(date) {
-  const days = date.days.toString().padStart(2, '0');
-  const hours = date.hours.toString().padStart(2, '0');
-  const minutes = date.minutes.toString().padStart(2, '0');
-  const seconds = date.seconds.toString().padStart(2, '0');
-  return { days, hours, minutes, seconds };
+  const result = {};
+  const keys = Object.keys(date);
+  for (const key of keys) {
+    result[key] = date[key].toString().padStart(2, '0');
+  }
+  return result;
 }
