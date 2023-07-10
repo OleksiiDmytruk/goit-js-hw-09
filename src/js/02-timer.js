@@ -22,6 +22,7 @@ const options = {
   onClose(selectedDates) {
     if (selectedDates[0] < options.defaultDate) {
       Notiflix.Notify.info('Please choose a date in the future');
+      startBtnEl.disabled = true;
     } else {
       startBtnEl.disabled = false;
     }
@@ -36,14 +37,11 @@ function startTimer() {
   let ms = 0;
 
   const timerId = setInterval(() => {
-    ms = selectedDate - new Date();
+    ms = selectedDate - Date.now();
     if (ms >= 0) {
       const date = convertMs(ms);
       const result = addLeadingZero(date);
-      deysEl.textContent = result.days;
-      hoursEl.textContent = result.hours;
-      minutesEl.textContent = result.minutes;
-      secondsEl.textContent = result.seconds;
+      getTimer(result);
     } else {
       clearInterval(timerId);
       datetimeInputEL.disabled = false;
@@ -66,7 +64,12 @@ function convertMs(ms) {
   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
   return { days, hours, minutes, seconds };
 }
-
+function getTimer(result) {
+  deysEl.textContent = result.days;
+  hoursEl.textContent = result.hours;
+  minutesEl.textContent = result.minutes;
+  secondsEl.textContent = result.seconds;
+}
 function addLeadingZero(date) {
   const days = date.days.toString().padStart(2, '0');
   const hours = date.hours.toString().padStart(2, '0');

@@ -7,8 +7,7 @@ let startId = null;
 stopBtnEl.disabled = true;
 
 function onStart() {
-  startBtnEl.disabled = true;
-  stopBtnEl.disabled = false;
+  toggleBtnActive(true);
   bodyEl.style.backgroundColor = getRandomHexColor();
   startId = setInterval(() => {
     bodyEl.style.backgroundColor = getRandomHexColor();
@@ -16,9 +15,12 @@ function onStart() {
 }
 
 function onStop() {
-  startBtnEl.disabled = false;
-  stopBtnEl.disabled = true;
+  toggleBtnActive(false);
   clearInterval(startId);
+}
+function toggleBtnActive(bool) {
+  startBtnEl.disabled = bool;
+  stopBtnEl.disabled = !bool;
 }
 
 function getRandomHexColor() {
